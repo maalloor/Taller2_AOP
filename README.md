@@ -6,4 +6,4 @@
 - ADRIANA BRIGITTE GUILINDRO GARCES
 - MANUEL ALEJANDRO LOOR MACIAS
 
-![Aspecto Usuario creado](C:\Users\USER\Documents\GitHub)
+![Aspecto Usuario creado](screenshot_Parte2_UsuarioCreado.PNG)
