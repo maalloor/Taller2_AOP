@@ -17,26 +17,22 @@ public aspect Log {
     pointcut successTransaction() : call(* moneyMake*(..) );
     after() : successTransaction() {
     	tipoTransaccion = "*** Transaccion Realizada ***";
-    	System.out.println(tipoTransaccion);
-    	System.out.println(strDate);
-    	generateFile();
+    	generateFileAndConsole();
     }
     pointcut successDrawal() : call(* moneyWith*(..) );
     after() : successDrawal(){
-    tipoTransaccion = "*** Retiro Realizado ***";
+    	tipoTransaccion = "*** Retiro Realizado ***";
+    	generateFileAndConsole();
+    }
+    public void generateFileAndConsole()
+    {
     	System.out.println(tipoTransaccion);
     	System.out.println(strDate);
-    	generateFile();
-    }
-    public void generateFile()
-    {
-    	try {
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(tipoTransaccion+"\n");
+    	try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(),true)))
+    	{
+    		bw.write(tipoTransaccion+"\n");
             bw.write(strDate+"\n");
             bw.write("-----------------------\n");
-            bw.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
